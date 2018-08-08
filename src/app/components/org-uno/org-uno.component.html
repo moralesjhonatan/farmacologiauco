@@ -1,0 +1,37 @@
+<button pButton type="button" label="Ampliar" (click)="ampliar()"></button>
+<button pButton type="button" label="Reducir" (click)="reducir()"></button>
+
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {{informacionCasilla}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="organigrama" [ngStyle]="{'zoom': i+'%'}">
+    <p-organizationChart [value]="data" selectionMode="single" [(selection)]="selectedNode" (onNodeSelect)="onNodeSelect($event)" styleClass="company">
+        <ng-template let-node pTemplate="textTablaDeCuatro">
+            <div class="node-header ui-corner-top">{{node.label}}</div>
+            <div class="node-content">
+                <div>{{node.data.name1}}</div>
+            </div>
+            <div class="node-header ui.corner-top">{{node.data.name2}}</div>
+            <div class="node-content">
+                <div>{{node.data.name3}}</div>
+            </div>
+        </ng-template>
+        <ng-template let-node pTemplate="textTablaDeDos">
+            <div class="node-header ui-corner-top">{{node.label}}</div>
+            <div class="node-content">
+                <div>{{node.data.name1}}</div>
+            </div>
+        </ng-template>
+        <ng-template let-node pTemplate="department">
+            {{node.label}}
+        </ng-template>
+    </p-organizationChart>
+</div>
